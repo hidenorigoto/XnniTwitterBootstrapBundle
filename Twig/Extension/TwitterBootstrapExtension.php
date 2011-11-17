@@ -10,7 +10,16 @@ class TwitterBootstrapExtension extends \Twig_Extension {
     {
         return array(
             'tb_confirm_button'   => new \Twig_Function_Method($this, 'confirmButton', array('is_safe' => array('html'))),
+            'tb_button'   => new \Twig_Function_Method($this, 'normalButton', array('is_safe' => array('html'))),
         );
+    }
+
+    public function normalButton($btnLabel, $okAction, $parameters = array()) {
+        $primary = (isset($parameters['primary'])) ? ' primary' : '';
+$ret = <<<DOC_END
+    <input type="button" class="btn$primary" value="$btnLabel" onClick="$okAction">
+DOC_END;
+        return $ret;
     }
 
     public function confirmButton($btnLabel, $message, $okAction, $parameters = array()) {
