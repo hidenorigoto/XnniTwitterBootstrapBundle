@@ -15,24 +15,24 @@ class TwitterBootstrapExtension extends \Twig_Extension {
     }
 
     public function normalButton($btnLabel, $okAction, $parameters = array()) {
-        $primary = (isset($parameters['primary'])) ? ' primary' : '';
+        $primary = (isset($parameters['primary'])) ? ' btn-primary' : '';
 $ret = <<<DOC_END
-    <input type="button" class="btn$primary" value="$btnLabel" onClick="$okAction">
+    <a class="btn$primary" onClick="$okAction">$btnLabel</a>
 DOC_END;
         return $ret;
     }
 
     public function confirmButton($btnLabel, $message, $okAction, $parameters = array()) {
-        $primary = (isset($parameters['primary'])) ? ' primary' : '';
+        $primary = (isset($parameters['primary'])) ? ' btn-primary' : '';
         $uniq = uniqid();
 $ret = <<<DOC_END
-    <input type="button" class="btn$primary" value="$btnLabel" data-controls-modal="$uniq" data-backdrop="true" data-keyboard="true">
+    <a class="btn$primary" data-toggle="modal" href="#$uniq" data-backdrop="true" data-keyboard="true">$btnLabel</a>
     <div id="$uniq" class="modal hide fade">
       <div class="modal-header">$btnLabel の確認</div>
       <div class="modal-body">$message</div>
       <div class="modal-footer">
-        <input type="button" class="btn primary" value="$btnLabel" onClick="$okAction">
-        <input type="button" class="btn" value="キャンセル" onClick="$('#$uniq').modal('hide');">
+        <a class="btn btn-primary" onClick="$okAction">$btnLabel</a>
+        <a class="btn" onClick="$('#$uniq').modal('hide');">キャンセル</a>
       </div>
     </div>
 DOC_END;
