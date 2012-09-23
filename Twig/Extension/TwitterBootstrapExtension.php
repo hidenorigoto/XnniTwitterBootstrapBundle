@@ -26,8 +26,8 @@ DOC_END;
         $primary = (isset($parameters['primary'])) ? ' btn-primary' : '';
         $uniq = uniqid();
 $ret = <<<DOC_END
-    <a class="btn$primary" data-toggle="modal" href="#$uniq" data-backdrop="true" data-keyboard="true">$btnLabel</a>
-    <div id="$uniq" class="modal hide fade">
+    <a class="btn$primary" data-toggle="modal" href="#$uniq" data-backdrop="false" data-keyboard="true">$btnLabel</a>
+    <div id="$uniq" class="modal hide">
       <div class="modal-header">$btnLabel の確認</div>
       <div class="modal-body">$message</div>
       <div class="modal-footer">
